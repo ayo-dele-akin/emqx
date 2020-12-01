@@ -41,6 +41,9 @@
 
 -define(TAB, ?MODULE).
 
+
+
+
 -record(?TAB, {username, password}).
 
 %%--------------------------------------------------------------------
@@ -56,6 +59,8 @@ cli(["add", Username, Password]) ->
     emqx_ctl:print("~p~n", [Ok]);
 
 cli(["update", Username, NewPassword]) ->
+
+
     Ok = update_password(iolist_to_binary(Username), iolist_to_binary(NewPassword)),
     emqx_ctl:print("~p~n", [Ok]);
 
