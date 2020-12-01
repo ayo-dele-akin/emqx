@@ -1,0 +1,20 @@
+name: Elvis Linter
+
+on: [push, pull_request]
+
+jobs:
+
+  run_lint:
+
+    runs-on: ubuntu-latest
+
+    container:
+      image: erlang:22.1
+
+    steps:
+      - uses: actions/checkout@v1
+      - name: Make evlis_lint file executable and Lint Changed Files.
+        run: |
+          chmod +x ./elvis_lint.sh && ./elvis_lint.sh
+
+
