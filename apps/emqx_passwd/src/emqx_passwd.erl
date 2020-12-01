@@ -39,6 +39,8 @@ check_pass({PassHash, Password}, bcrypt) ->
     end;
 check_pass({PassHash, Password}, HashType) ->
     check_pass(PassHash, emqx_passwd:hash(HashType, Password));
+
+
 check_pass({PassHash, Salt, Password}, {pbkdf2, Macfun, Iterations, Dklen}) ->
     check_pass(PassHash, emqx_passwd:hash(pbkdf2, {Salt, Password, Macfun, Iterations, Dklen}));
 check_pass({PassHash, Salt, Password}, {salt, bcrypt}) ->

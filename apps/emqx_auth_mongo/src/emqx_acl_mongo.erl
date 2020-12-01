@@ -32,6 +32,10 @@ register_metrics() ->
 check_acl(#{username := <<$$, _/binary>>}, _PubSub, _Topic, _AclResult, _State) ->
     ok;
 
+
+
+
+
 check_acl(ClientInfo, PubSub, Topic, _AclResult, Env = #{aclquery := AclQuery}) ->
     #aclquery{collection = Coll, selector = SelectorList} = AclQuery,
     Pool = maps:get(pool, Env, ?APP),

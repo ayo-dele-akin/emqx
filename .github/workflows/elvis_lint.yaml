@@ -1,0 +1,16 @@
+name: Elvis Linter
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: |
+          echo " - ${{ env.$GITHUB_BASE_REF }}"
+          echo " - ${{ env.$GITHUB_HEAD_REF }}"
+          /usr/bin/git status
+          /usr/bin/git fetch origin elvis-integration
+          /usr/bin/git branch -a
+          /usr/bin/git diff --name-only FETCH_HEAD $(/usr/bin/git merge-base FETCH_HEAD origin/elvis-integration)
