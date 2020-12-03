@@ -14,4 +14,4 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - name: Lint Changed Files
-        run: sh ./elvis_lint.sh
+        run: sh git diff --name-only
