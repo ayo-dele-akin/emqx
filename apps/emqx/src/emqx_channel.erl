@@ -1276,7 +1276,7 @@ packing_alias(Packet = #mqtt_packet{
                         },
               Channel = ?IS_MQTT_V5 = #channel{topic_aliases = TopicAliases, alias_maximum = Limits}) ->
     case find_alias(outbound, Topic, TopicAliases) of
-        {ok, AliasId} -> 
+        {ok, AliasId} ->
             NPublish = Publish#mqtt_packet_publish{
                             topic_name = <<>>,
                             properties = maps:merge(Prop, #{'Topic-Alias' => AliasId})
@@ -1579,6 +1579,8 @@ run_hooks(Name, Args, Acc) ->
 -compile({inline, [find_alias/3, save_alias/4]}).
 
 find_alias(_, _ ,undefined) -> false;
+
+
 find_alias(inbound, AliasId, _TopicAliases = #{inbound := Aliases}) ->
     maps:find(AliasId, Aliases);
 find_alias(outbound, Topic, _TopicAliases = #{outbound := Aliases}) ->
