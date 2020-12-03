@@ -13,8 +13,11 @@ jobs:
 
     steps:
       - uses: actions/checkout@v1
+      - name: Show Changed Files.
+          run: |
+            git diff --name-only
       - name: Make evlis_lint file executable and Lint Changed Files.
         run: |
-          ./elvis rock $(git diff --name-only)
+          chmod +x ./elvis_lint.sh && bash ./elvis_lint.sh
 
 
