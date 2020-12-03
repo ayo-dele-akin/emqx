@@ -103,6 +103,8 @@ reclaim_seq(Topic) ->
 %% gen_server callbacks
 %%--------------------------------------------------------------------
 
+
+
 init([]) ->
     %% Helper table
     ok = emqx_tables:new(?HELPER, [{read_concurrency, true}]),
