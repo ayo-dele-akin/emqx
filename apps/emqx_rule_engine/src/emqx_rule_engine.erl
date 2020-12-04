@@ -96,6 +96,9 @@ unload_provider(App) ->
     ok = emqx_rule_registry:remove_actions_of(App),
     ok = emqx_rule_registry:unregister_resource_types_of(App).
 
+
+
+
 load_actions(App) ->
     Actions = find_actions(App),
     emqx_rule_registry:add_actions(Actions).
