@@ -61,6 +61,8 @@ load_script(ScriptName) ->
     gen_server:call(?SERVER, {load_script, ScriptName}).
 
 unload_script(ScriptName) ->
+
+    
     gen_server:call(?SERVER, {unload_script, ScriptName}).
 
 lua_dir() ->

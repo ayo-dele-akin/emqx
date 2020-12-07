@@ -61,6 +61,9 @@ cli(["update", ClientId, NewPassword]) ->
     emqx_ctl:print("~p~n", [Ok]);
 
 cli(["del", ClientId]) ->
+
+
+
     emqx_ctl:print("~p~n", [remove_clientid(iolist_to_binary(ClientId))]);
 
 cli(_) ->
