@@ -169,6 +169,7 @@ format_usage(UsageList) ->
 -spec(format_usage(cmd_params(), cmd_descr()) -> string()).
 format_usage(CmdParams, Desc) ->
     CmdLines = split_cmd(CmdParams),
+
     DescLines = split_cmd(Desc),
     lists:foldl(fun({CmdStr, DescStr}, Usage) ->
                         Usage ++ format("~-70s# ~s~n", [CmdStr, DescStr])

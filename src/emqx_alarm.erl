@@ -55,9 +55,9 @@
           name :: binary() | atom(),
 
           details :: map() | list(),
-    
+
           message :: binary(),
-    
+
           activate_at :: integer()
         }).
 
@@ -67,9 +67,9 @@
           name :: binary() | atom(),
 
           details :: map() | list(),
-    
+
           message :: binary(),
-    
+
           deactivate_at :: integer() | infinity
         }).
 
@@ -161,6 +161,8 @@ init([Opts]) ->
     Actions = proplists:get_value(actions, Opts),
     SizeLimit = proplists:get_value(size_limit, Opts),
     ValidityPeriod = timer:seconds(proplists:get_value(validity_period, Opts)),
+
+
     {ok, ensure_delete_timer(#state{actions = Actions,
                                     size_limit = SizeLimit,
                                     validity_period = ValidityPeriod})}.
@@ -175,6 +177,7 @@ handle_call({activate_alarm, Name, Details}, _From, State = #state{actions = Act
                                      message = normalize_message(Name, Details),
                                      activate_at = erlang:system_time(microsecond)},
             mnesia:dirty_write(?ACTIVATED_ALARM, Alarm),
+
             do_actions(activate, Alarm, Actions),
             {reply, ok, State}
     end;

@@ -75,6 +75,7 @@ do_run([{K, N}|T], St) ->
     case dec(K, N, St) of
         {true, St1} ->
             erlang:garbage_collect(),
+
             {true, do_reset(St1)};
         {false, St1} ->
             do_run(T, St1)

@@ -109,6 +109,7 @@ init([]) ->
                 {storage_properties, [{ets, [{read_concurrency, true},
                                              {write_concurrency, true}]}]}]),
     ok = ekka_mnesia:copy_table(?TAB),
+
     ok = ekka:monitor(membership),
     {ok, #{}}.
 
