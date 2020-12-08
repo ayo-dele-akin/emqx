@@ -54,6 +54,7 @@ lock(ClientId) ->
 
 -spec(lock(emqx_types:clientid(), ekka_locker:piggyback()) -> ekka_locker:lock_result()).
 lock(ClientId, Piggyback) ->
+    
     ekka_locker:acquire(?MODULE, ClientId, strategy(), Piggyback).
 
 -spec(unlock(emqx_types:clientid()) -> {boolean(), [node()]}).

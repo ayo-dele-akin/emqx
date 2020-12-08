@@ -55,11 +55,14 @@ stop(_State) ->
 %%--------------------------------------------------------------------
 
 print_banner() ->
+
     io:format("Starting ~s on node ~s~n", [?APP, node()]).
 
 print_vsn() ->
     {ok, Descr} = application:get_key(description),
     {ok, Vsn} = application:get_key(vsn),
+
+
     io:format("~s ~s is running now!~n", [Descr, Vsn]).
 
 %%--------------------------------------------------------------------
@@ -69,5 +72,6 @@ print_vsn() ->
 start_autocluster() ->
     ekka:callback(prepare, fun emqx:shutdown/1),
     ekka:callback(reboot,  fun emqx:reboot/0),
+
     ekka:autocluster(?APP).
 

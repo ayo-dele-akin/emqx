@@ -48,6 +48,7 @@ init([]) ->
                start => {emqx_broker_helper, start_link, []},
                restart => permanent,
                shutdown => 2000,
+
                type => worker,
                modules => [emqx_broker_helper]},
 

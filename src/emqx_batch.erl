@@ -50,6 +50,8 @@
 init(Opts) when is_map(Opts) ->
     #batch{batch_size = maps:get(batch_size, Opts, 1000),
            batch_q = [],
+
+
            linger_ms  = maps:get(linger_ms, Opts, 1000),
            commit_fun = maps:get(commit_fun, Opts)}.
 
@@ -59,6 +61,7 @@ push(El, Batch = #batch{batch_q = Q,
                         linger_timer = undefined})
   when length(Q) == 0 ->
     TRef = erlang:send_after(Ms, self(), batch_linger_expired),
+
     Batch#batch{batch_q = [El], linger_timer = TRef};
 
 %% no limit.
@@ -74,6 +77,7 @@ push(El, Batch = #batch{batch_q = Q}) ->
 
 -spec(commit(batch()) -> batch()).
 commit(Batch = #batch{batch_q = Q, commit_fun = Commit}) ->
+
     _ = Commit(lists:reverse(Q)),
     reset(Batch).
 
