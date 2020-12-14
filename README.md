@@ -91,7 +91,7 @@ examples
 ```bash
 ./rebar3 ct --dir test,apps/emqx_sn,apps/emqx_coap
 ./rebar3 ct --suite test/emqx_SUITE.erl,apps/emqx_auth_http/test/emqx_auth_http_SUITE.erl
-./rebar3 ct --suite test/emqx_SUITE.erl --testcase t_restart
+./rebar3 ct --cover --suite test/emqx_SUITE.erl --case t_restart
 ```
 
 ## FAQ

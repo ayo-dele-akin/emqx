@@ -69,5 +69,9 @@ xref: $(REBAR)
 dialyzer: $(REBAR)
 	$(REBAR) as check dialyzer
 
+.PHONY: coveralls
+coveralls: $(REBAR)
+	$(REBAR) as test coveralls send
+
 include packages.mk
 include docker.mk
